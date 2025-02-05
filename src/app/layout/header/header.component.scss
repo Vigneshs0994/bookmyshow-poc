@@ -1,0 +1,99 @@
+.header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* Three columns: logo, search box, login button */
+    justify-items: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    background-color: #fff; /* Background color */
+    padding: 10px 20px; /* Padding around the header */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Shadow for depth */
+    gap: 20px; /* Space between grid items */
+}
+
+.header > .login-btn {
+    justify-self: end; /* Move login button to the right end */
+  }
+  
+  .logo img {
+    height: 80px;  /* Adjust the logo size */
+  }
+  
+  .logo {
+      height: 2rem;
+      cursor: pointer; 
+      display: flex;
+      align-items: center;
+   }
+
+
+.login-btn {
+    position: absolute;
+      background-color: #ff0606;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 16px;
+ }
+
+.login-btn:hover {
+    background-color: #000000;
+}
+ 
+  /* Style the search box container */
+.search-box {
+    display: flex;
+  justify-content: right;
+    max-width: 700px; /* Set a max-width for the search box */
+  margin: 20px 80px; /* Center it horizontally with some space on top */
+
+}
+
+/* Style the input group */
+.input-group {
+  //position: relative;
+  display: flex;
+  align-items: center;
+  width: 700px;
+}
+
+/* Style the input field */
+.form-control {
+    margin-left: auto;
+    width: 600px;
+   padding-left: 30px; /* Add space on the left for the search icon */
+  border-radius: 25px; /* Rounded corners for the input field */
+  font-size: 1rem; /* Increase font size */
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 9px;
+  
+}
+
+ 
+/* Style the input group append (icon area) */
+.input-group-append .input-group-text {
+  background-color: #fff; /* White background for the icon container */
+  border-left: none; /* Remove the left border to merge with the input */
+  border-radius: 0 25px 25px 0; /* Rounded right corners for the icon */
+  font-size: 1.2rem; /* Increase the size of the icon */
+}
+
+/* Font Awesome Icon Style */
+.input-group-text i {
+  color: #f51717; /* Blue color for the icon */
+}
+
+/* Add a hover effect to change the border color */
+.form-control:focus {
+  border-color: #ff0000; /* Change the border color on focus */
+  box-shadow: 0 0 5px rgba(244, 92, 4, 0.5); /* Add shadow effect on focus */
+}
+
+.input-group-append .input-group-text:hover {
+  background-color: #e9ecef; /* Light gray background on hover */
+}
+
+.dropdown-toggle{
+    background-color: white;
+}
+
+ 

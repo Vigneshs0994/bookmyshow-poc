@@ -1,0 +1,38 @@
+<br/><br/>
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div *ngFor="let slide of slides; let i = index" [ngClass]="{'carousel-item': true, 'active': i === 0}">
+        <img [src]="slide.img" class="d-block w-100" [alt]="slide.alt">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  
+  <br/>
+<h3>Recommended movies</h3>
+  <br/>
+
+  <div class="grid-container">
+    <!-- Loop through films array and create a grid item for each film -->
+    <div class="grid-item" *ngFor="let film of films" (click)="onFilmClick(film)">
+      <div class="film-info">
+        <h2 class="film-name">{{ film.name }}</h2>
+        <p class="film-languages">Languages: {{ film.languages }}</p>
+      </div>
+      <div class="film-image">
+        <img [src]="film.imageUrl" [alt]="film.name">
+      </div>
+    </div>
+  </div>
+  
+  <br/> 
+
+
+   

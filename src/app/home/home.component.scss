@@ -1,0 +1,76 @@
+.carousel-inner img {
+    object-fit: cover;
+    height: 650px;
+  }
+  
+  
+  /* Container for the 6-grid layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 3 columns layout */
+    gap: 16px; /* Space between grid items */
+    margin: 20px; /* Margin around the grid */
+    padding: 10px;
+    grid-template-rows: auto; /* Rows height will be automatically adjusted */
+  }
+  
+  /* Styling for each grid item */
+  .grid-item {
+    border: 1px solid #ddd; /* Optional border */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensures child elements don't overflow */
+    background-color: #e3e3e3; /* White background for each item */
+    display: flex;
+    flex-direction: column; /* Stack film name, languages, and image vertically */
+    padding: 16px; /* Padding inside the card */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+    cursor: pointer; /* Show pointer cursor on hover */
+  }
+
+  .grid-item:hover {
+    transform: translateY(-5px); /* Slightly lift the item */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+  }
+  
+  
+  .film-info {
+    margin-bottom: 12px; /* Space between text and image */
+  }
+  
+  .film-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .film-languages {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .film-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .film-image img {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 4px; /* Optional rounded corners for images */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .grid-container {
+      grid-template-columns: 1fr; /* 1 column on small screens */
+    }
+  }
+  
+ 

@@ -1,0 +1,185 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  .container {
+    width: 80%;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    color: #ffffff;
+    background-color: #f70404;
+  }
+  
+  h2, h3 {
+    font-size: 1.8em;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    font-size: 1.1em;
+    margin: 5px 0;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: white;
+    background-color: #f70404;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #f70404;
+  }
+  
+  /* Sections */
+  .summary {
+    margin-top: 30px;
+  }
+  
+  .movie-info, .seats-selected, .price-summary, .user-details {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .movie-info h2, .seats-selected h3, .price-summary p, .user-details p {
+    margin: 10px 0;
+  }
+  
+  .price-summary p {
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+  
+  .actions {
+    text-align: center;
+  }
+  
+  /* Input Field Styles */
+  input[type="text"] {
+    padding: 8px;
+    font-size: 1.1em;
+    margin-top: 5px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #f70404;
+    outline: none;
+  }
+  
+  input[type="text"]::placeholder {
+    color: #888;
+  }
+
+ /* Modal overlay styling */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensures the modal stays on top */
+  }
+  
+  /* Modal content styling */
+  .modal-content {
+    background-color: #fff; /* White background for the modal */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+    width: 400px;
+    max-width: 90%; /* Make sure the modal is responsive */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for 3D effect */
+    text-align: center;
+    position: relative; /* For positioning the close button */
+  }
+  
+  /* Modal heading */
+  .modal-content h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Paragraphs and text inside modal */
+  .modal-content p {
+    font-size: 1.2em;
+    color: #333;
+    margin: 10px 0;
+  }
+  
+  /* List styling for selected seats */
+  .modal-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  /* Button styling inside modal */
+  .modal-content button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #f70404; /* Green color for "success" */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 100%; /* Full width for the button */
+  }
+  
+  /* Button hover effect */
+  .modal-content button:hover {
+    background-color: #f70404; /* Darker green on hover */
+  }
+  
+  /* Ensure that modal content is centered */
+  @media (max-width: 768px) {
+    .modal-content {
+      width: 80%; /* Make modal more responsive on smaller screens */
+    }
+  }
+  
+  

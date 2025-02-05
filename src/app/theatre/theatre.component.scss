@@ -1,0 +1,167 @@
+ 
+.movie-details {
+    width: 50%; /* Child div takes up 50% of the parent's width */
+     padding: 20px; /* Add some padding for content spacing */
+    box-sizing: border-box; /* Ensures padding is included in the element's width */
+ align-content: left;
+  }
+
+/* Parent container for theatre list */
+.theatre-list {
+    display: grid;
+    background: #f2f2f2;
+    grid-template-columns: repeat(1, 3fr); /* 3 equal-width columns */
+    gap: 60px; /* Space between the grid items */
+    padding: 20px;
+    max-width: 100%;
+    box-sizing: border-box;
+   }
+  
+  /* Individual theatre items */
+  .theatre-name1, .theatre-name2, .theatre-name3 {
+    display: flex;
+    grid-template-columns: 1fr; /* All columns are in a single column initially */
+    grid-gap: 20px; /* Space between elements in each theatre block */
+    background-color: #f4f4f4; /* Light background for each theatre */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+     width: 100%;
+  }
+  
+  /* Style for the name of the theatre */
+  .name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    flex-grow: 0.3;
+  }
+
+  .green {
+    color: #6cc361  ;
+  }
+
+  .orange {
+    color: orange;
+  }
+  
+  
+  /* Style for time slots */
+  .time1, .time2, .time3 {
+    font-size: 16px;
+    color: #6cc361;
+    margin: 5px 0;
+    border-radius: 8px;
+    width: 200px;
+    height: 40px;
+  }
+  
+  /* Optionally add hover effect for each theatre block */
+  .theatre-name1:hover, .theatre-name2:hover, .theatre-name3:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Make the grid responsive */
+  @media (max-width: 768px) {
+    .theatre-list {
+      grid-template-columns: 1fr; /* Stack the theatre blocks vertically on smaller screens */
+    }
+  }
+  
+ 
+
+
+  .calendar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+  
+  .arrow {
+    font-size: 24px;
+    background-color: #cfcbcb;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+  
+  .arrow:hover, .day:hover {
+    background-color: #f01919;
+    color: #f4f4f4;
+  }
+  
+  .calendar {
+    display: flex;
+    overflow-x: auto; /* Make it horizontally scrollable */
+    gap: 20px; /* Space between days */
+    padding: 10px;
+  }
+  
+  .day {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    text-align: center;
+    min-width: 100px; /* Ensure consistent width for each day */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-seats{
+    width: 80%;
+    border-radius: 15px;
+
+  }
+  .number-selection-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .numbers {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .number {
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid #ccc;
+    border-radius: 38px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .number:hover {
+    background-color: #f70404;
+  }
+  
+  .selected {
+    background-color: #f70404;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .seat-btn {
+    padding: 10px 20px;
+    background-color: #f70404;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+  }
+  
+  .seat-btn:hover {
+    background-color: #f70404;
+  }
+  
+  .selected-number {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }

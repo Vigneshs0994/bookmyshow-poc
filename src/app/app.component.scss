@@ -1,0 +1,141 @@
+
+ /* Customize the modal backdrop (the background behind the modal) */
+ .modal.fade {
+    background-color: rgba(0, 0, 0, 0.6); /* Darken the backdrop */
+  }
+  
+  /* Customize the modal dialog (the container around the content) */
+  .modal-dialog {
+    max-width: 700px;  /* Adjust the maximum width of the modal */
+    margin: 1.75rem auto;  /* Center the modal vertically and horizontally */
+  }
+  
+  /* Customize the modal content */
+  .modal-content {
+    background-color: #fff; /* White background for the modal */
+    border-radius: 10px; /* Rounded corners for the modal */
+    padding: 20px;  /* Add padding to the modal content */
+  }
+  
+  /* Modal header customization */
+  .modal-header {
+    border-bottom: 2px solid #dee2e6; /* A soft line between header and body */
+    padding-bottom: 10px;
+  }
+  
+  .modal-title {
+    font-size: 1.5rem; /* Increase font size of the modal title */
+    font-weight: bold;
+    color: #333;  /* Dark text for the title */
+  }
+  
+  /* Customize the close button */
+  .modal-header .close {
+    font-size: 1.5rem; /* Bigger close button */
+    color: #999; /* Soft gray close button */
+    opacity: 1; /* Full opacity */
+  }
+  
+  /* Close button hover effect */
+  .modal-header .close:hover {
+    color: #000; /* Darker color on hover */
+    opacity: 1;
+  }
+  
+  /* Modal body customization */
+  .modal-body {
+    padding: 20px 0;  /* Add vertical padding to body */
+    font-size: 1rem; /* Adjust font size of the modal body */
+    color: #555; /* Dark gray text color */
+    line-height: 1.5;  /* Increase line height for better readability */
+  }
+  
+  /* Modal footer customization */
+  .modal-footer {
+    padding: 10px 20px;  /* Add padding to footer */
+    border-top: 2px solid #dee2e6;  /* A soft line between body and footer */
+  }
+  
+  /* Customize buttons in the footer */
+  .modal-footer .btn {
+    font-size: 1rem; /* Font size for the buttons */
+    padding: 10px 20px; /* Button padding */
+    border-radius: 5px; /* Rounded corners for the buttons */
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+  }
+  
+  /* Hover effect for close button */
+  .modal-footer .btn-secondary:hover {
+    background-color: #d6d8db; /* Lighter background color for secondary button on hover */
+  }
+  
+  /* Hover effect for primary button */
+  .modal-footer .btn-primary:hover {
+    background-color: #007bff; /* Bootstrap blue color on hover */
+  }
+  
+  /* Adjust modal size for smaller screens (responsive design) */
+  @media (max-width: 576px) {
+    .modal-dialog {
+      max-width: 100%; /* Increase the width for small screens */
+      margin: 1rem auto; /* Keep modal centered on small screens */
+    }
+  
+    .modal-content {
+      padding: 10px; /* Less padding on small screens */
+    }
+  }
+
+   .btn-seats{
+    width: 80%;
+    border-radius: 15px;
+
+  }
+  .number-selection-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .numbers {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .number {
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid #ccc;
+    border-radius: 38px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .number:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .selected {
+    background-color: #f70404;
+    color: white;
+    font-weight: bold;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #f70404;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #f70404;
+  }
+  
+  .selected-number {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }

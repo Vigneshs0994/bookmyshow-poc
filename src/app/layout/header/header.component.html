@@ -1,0 +1,37 @@
+<!-- header.component.html -->
+<header class="header">
+    <div class="logo" [routerLink]="'/'">
+       <img src="assets/logo.png" alt="Website Logo" />
+    </div>
+    <!-- Search Box with Icon -->
+<div class="search-box">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search movies..." aria-label="Search movies" aria-describedby="basic-addon1">
+      <div class="input-group-append">
+        <span class="input-group-text" id="basic-addon1">
+          <i class="fa fa-search"></i> 
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="dropdown">
+    <button (click)="toggleDropdown()" class="dropdown-toggle" type="button">
+      {{ selectedCity }}
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" [class.show]="isDropdownOpen">
+      <li><a href="#" (click)="selectCity('Hyderabad')">Hyderabad</a></li>
+      <li><a href="#" (click)="selectCity('Chennai')">Chennai</a></li>
+      <li><a href="#" (click)="selectCity('Mumbai')">Mumbai</a></li>
+      <li><a href="#" (click)="selectCity('Kolkata')">Kolkata</a></li>
+      <li><a href="#" (click)="selectCity('Delhi')">Delhi</a></li>
+    </ul>
+  </div>
+  
+  
+    <div class="login-btn" (click)="redirectToLogin()">Sign in</div>
+    
+  </header>
+  

@@ -1,0 +1,67 @@
+<br/>
+
+  <div class="image-container">
+    <img [src]="bgimageUrl" alt="Main Image" class="main-image">
+  </div>
+  <div class="overlap-img">
+    <img [src]="imageUrl" alt="Main Image" class="thumbnail-img">
+  </div>
+  
+  <div class="container">
+    <div class="title">{{ filmname }}</div><br/>
+    <div class="badges">
+     <div class="format">2D, IMAX 2D, 4DX</div>
+    <div class="format">{{ languages }}</div>
+    </div><br/>
+    <div class="details">
+      <div>2h 45m  • Action, Drama, Political • UA13+  • 10 Jan, 2025  </div>
+     </div>
+
+     <br/><br/><br/>
+     <div class="book-tickets" (click)="onBookTicketClick()">Book tickets</div>
+     <div class="modal fade" tabindex="-1" [ngClass]="{'show': isModalOpen}" style="display: block;" *ngIf="isModalOpen" (click)="closeModal()">
+        <div class="modal-dialog" (click)="$event.stopPropagation()">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"> {{ filmname }} : How Many Seats?
+            </h5>
+            
+            </div>
+            <div class="modal-body">
+                <div class="number-selection-container">
+             <br/><br/> <br/><br/>  
+            <div class="numbers">
+                      <div 
+                        *ngFor="let num of numbers; let i = index"
+                        class="number"
+                        [class.selected]="selectedNumber === num" 
+                        (click)="selectNumber(num)">
+                        {{ num }}
+                      </div>
+                    </div>
+                    <br/>
+                    <br/>  <br/>
+                    <br/>  
+                    <!-- Button to Print the Selected Number -->
+                    <button class="btn-seats" (click)="printSelectedNumber()">Select Seats</button>
+                  
+                    <!-- Display Selected Number -->
+                    <div *ngIf="selectedNumber !== null" class="selected-number">
+                      <p>You selected: {{ selectedNumber }}</p>
+                    </div>
+                  </div>
+                  
+               </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+             <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="story">
+    <h3>About the movie</h3>
+    <p>{{ storyline }} </p>
+</div>

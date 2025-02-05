@@ -1,0 +1,155 @@
+.seating-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* 5 columns for seats per row */
+    grid-template-rows: repeat(2, 30px); /* 5 rows from B to E */
+    gap: 20px; /* Space between seats */
+    max-width: 30%;
+    margin: 0 auto;
+  }
+  
+  .row {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* 5 seats per row */
+    gap: 35px;
+  }
+  
+  .seat {
+     border: 1px solid #1ea83c;
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #1ea83c;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .seat:hover {
+    background-color: #1ea83c;
+    color: white;
+   }
+  
+  .selected {
+    background-color: #1ea83c;
+    color: white;
+  }
+  
+  .unavailable {
+    background-color: #7c7b7b;
+    color: white;
+    cursor: not-allowed;
+  }
+
+  .unavailable:hover {
+    background-color: #7c7b7b;
+    color: white;
+    cursor: not-allowed;
+  }
+  
+  /* Basic reset */
+ 
+  /* Container for image and button */
+  .view {
+    position: relative;
+    display: inline-block;
+     max-width: 400px; /* Adjust max-width as needed */
+    margin: 0 auto;
+    display: flex;
+
+    display: block;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Styling for the image */
+  .image {
+    width: 100%; /* Makes the image responsive */
+    height: auto;
+  
+  }
+  
+ 
+  //---------
+
+  .showtime-container {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .film-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .film-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .showtime-details {
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    color: #555;
+  }
+  
+  .showtime-details p {
+    margin: 5px 0;
+  }
+  
+  strong {
+    color: #333;
+  }
+  
+  //----
+
+
+button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #ccc;
+  }
+  
+  button.selected {
+    background-color: #f70404;
+    color: white;
+  }
+  
+  .pay-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pay-button {
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    background-color: #f70404;
+    width: 400px;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    opacity: 0.8;
+  }
+  
+  .pay-button:hover {
+    opacity: 1;
+  }
+  
+  .pay-button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }

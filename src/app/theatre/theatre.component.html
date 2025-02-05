@@ -1,0 +1,72 @@
+<br/><br/>
+    <div class="movie-details">
+
+        <h3>{{ filmname }}</h3>
+
+    </div>
+<hr>
+ <br/>
+
+ <div class="calendar-container">
+    <button class="arrow left" >&#8592;</button>
+  
+    <div class="calendar">
+      <div  *ngFor="let day of days" [class.selected]= "filmDate === day"  (click)="getFilmDate(day)" class="day">
+        {{ day }} 
+      </div>
+    </div>
+    <button class="arrow right"  >&#8594;</button>
+  </div>
+<br/>  
+ 
+
+<div class="modal fade" tabindex="-1" [ngClass]="{'show': isModalOpen}" style="display: block;" *ngIf="isModalOpen" (click)="closeModal()">
+    <div class="modal-dialog" (click)="$event.stopPropagation()">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"> {{ filmname }} : How Many Seats?
+        </h5>
+        
+        </div>
+        <div class="modal-body">
+            <div class="number-selection-container">
+         <br/><br/> <br/><br/>  
+        <div class="numbers">
+                  <div 
+                    *ngFor="let num of numbers; let i = index"
+                    class="number"
+                    [class.selected]="seatNumber === num" 
+                    (click)="selectNumber(num)">
+                    {{ num }}
+                  </div>
+                </div>
+                <br/>
+                <br/>  <br/>
+                <br/>  
+                <!-- Button to Print the Selected Number -->
+                <button class="seat-btn" (click)="printSelectedNumber()">Select Seats</button>
+              
+                <!-- Display Selected Number -->
+                <div *ngIf="seatNumber !== null" class="selected-number">
+                  <p>You selected: {{ seatNumber }}</p>
+                </div>
+              </div>
+              
+           </div>
+        <div class="modal-footer">
+          <button type="button" class="seat-btn" (click)="closeModal()">Close</button>
+         <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="theatre-list">
+    <div *ngFor="let theatre of theatresList" class="theatre-name1">
+      <div class="name">{{ theatre.name }} <p class="green">M-Ticket</p> <p class="orange"> Food & Beverage </p></div>
+      <div *ngFor="let filmtime of theatre.showtimes">
+        <button class="time1" (click)="getFilmInfo(filmtime,theatre.id)">{{ filmtime.time }}</button>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,57 @@
+<div class="container">
+    <header>
+      <h1>Ticket Booking Summary</h1>
+    </header>
+  
+    <section class="summary">
+      <!-- Movie and Showtime -->
+      <div class="movie-info">
+        <h2>Movie: <span>{{ film }}</span></h2>
+        <p><strong>Showtime : </strong> <span>{{ showtime }}</span></p>
+      </div>
+  
+      <!-- Selected Seats -->
+      <div class="seats-selected">
+        <h3>Selected Seats:</h3>
+        <ul>
+          <li *ngFor="let seat of selectedSeats">{{ seat }}</li>
+        </ul>
+      </div>
+  
+      <!-- Price Summary -->
+      <div class="price-summary">
+        <p><strong>Price per Seat:</strong> ₹{{ totalSeats }} x 190</p>
+        <p><strong>Total Price:</strong> ₹{{ totalprice }}</p>
+      </div>
+  
+      <!-- Customer Information -->
+      <div class="user-details">
+        <h3>Customer Information</h3>
+        <p><strong>Name:</strong> <input type="text" id="name" [(ngModel)]="customerName"   placeholder="Enter your name" /></p>
+        <p><strong>Mobile Number:</strong> <input type="text" id="mobile"  [(ngModel)]="customerMobile"  placeholder="Enter your mobile number" /></p>
+      </div>
+  
+      <!-- Actions -->
+      <div class="actions">
+        <button id="confirm-booking" (click)="confirmBooking()">Confirm Booking</button>
+        <button id="cancel-booking" (click) = "cancelBooking()">Cancel Booking</button>
+      </div>
+    </section>
+
+
+    <div class="modal" *ngIf="showModal">
+        <div class="modal-content">
+          <h2>Booking Successful!</h2>
+          <p><strong>Movie:</strong> {{ film }}</p>
+          <p><strong>Showtime:</strong> {{ showtime }}</p>
+          <p><strong>Selected Seats:</strong></p>
+          <ul>
+            <li *ngFor="let seat of selectedSeats">{{ seat }}</li>
+          </ul>
+          <p><strong>Total Price:</strong> ₹{{ totalprice }}</p>
+          <p><strong>Customer:</strong> {{ customerName }}</p>
+          <p><strong>Mobile Number:</strong> {{ customerMobile }}</p>
+          <button (click)="closeModal()">Close</button>
+        </div>
+  </div>
+  
