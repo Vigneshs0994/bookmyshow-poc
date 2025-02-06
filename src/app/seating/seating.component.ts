@@ -2,6 +2,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TheatreService } from '../services/theatre.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-seating',
@@ -28,7 +29,8 @@ export class SeatingComponent implements OnInit {
     private datePipe: DatePipe,
     private theatreService: TheatreService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {
     this.fetchAllJson();
 
@@ -65,7 +67,6 @@ export class SeatingComponent implements OnInit {
       this.selectedSeats.splice(seatIndex, 1);
     } else {
       const totalseats = Number(this.totalSeats);
-      // If not selected, add it to the selected seats list
       if (this.selectedSeats.length < totalseats) {
         this.selectedSeats.push(seat);
       }
@@ -94,7 +95,11 @@ export class SeatingComponent implements OnInit {
       .subscribe(
         (data) => {
           this.unavailableSeats = data.seats;
-
+ 
+          if(data.seats === undefined) {
+            alert("Show not displayed in this theatre!")
+            this.goBack();
+           }
           console.log(data.seats); // Debugging: To see the fetched data
         },
         (error) => {
@@ -171,53 +176,26 @@ export class SeatingComponent implements OnInit {
     // Find the film by film name  
 
 
-    const cinema = this.theatreData.find((cinema: { id: number; }) => cinema.id === 1);
- 
-    const film = cinema.films.find((f: any) => f.filmName === filmName);
+    const cinema = this.theatreData.find((cinema: { id: number; }) => cinema.id === Number(id));
+     const film = cinema.films.find((f: any) => f.filmName === filmName);
     if (film) {
- 
       // Find the relevant showtime
       const showtime = film.showtimes.find((s: any) => s.date === date && s.time === time);
       if (showtime) {
         // Update the seats for the found showtime
-        showtime.seats = this.unavailableSeats;
+        showtime.seats = newSeats;
        }
  
-   
-    /*const theatre = this.theatreData.map((data: any[]) => {
-
-      const cinema = data.map(c => c.id === id);
-
-      if (cinema) {
-       const film = cinema.name.find((f: any) => f.filmName === films); // Find the film by name
-        if (film) {
-          const showtime = film.showtimes.find(
-            (s: any) => s.date === date && s.time === time
-          ); // Find the showtime by date and time
-          if (showtime) {
-            newSeats.forEach((seat) => {
-              if (!showtime.seats.includes(seat)) {
-                showtime.seats.push(seat);
-              }
-            });
-
-            // Update the backend with the modified data
-            this.theatreService
-              .updateTheatreData(this.theatreData)
-              .subscribe((response) => {
-                alert('--> 2 :' + response);
-
-                console.log('Updated theatre data:', response);
-              });
-          } else {
-            console.log('Showtime not found for the given date and time');
-          }*/
-        }
+      }
         this.theatreService.updateCinemaData(this.theatreData).subscribe((response: any) => {
-          alert('Updated cinema data:'+response.films.seats);
+          alert('Updated cinema data:'+response);
         });
 
       // const showtime = film.showtimes.find((s: { date: string; time: string; }) => s.date === date && s.time === time);
   
+    }
+
+    goBack(): void {
+      this.location.back(); // Navigates to the previous page in the history
     }
 }

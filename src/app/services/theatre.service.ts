@@ -1,15 +1,18 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Options, PaginationParams, theatreData } from '../../type';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TheatreService {
-  apiUrl = 'assets/films.json';
-  
+  apiUrl = 'assets/film.json';
+  apiNodeUrl = 'http://localhost:3000/updatefilms';
+  apilink='http://localhost:3000/';
+
+  theatreData!: any;
   constructor(private httpClient: HttpClient) { }
 
   get<T>(url: string, options: Options): Observable<T> {
@@ -25,7 +28,7 @@ export class TheatreService {
   }
 
   getFilms(): Observable<any> {
-    return this.httpClient.get<any>('assets/films.json');  // Make sure the path is correct
+    return this.httpClient.get<any>('assets/film.json');  // Make sure the path is correct
   }
  
   getTheatrename(id: number): Observable<any> {
@@ -33,7 +36,7 @@ export class TheatreService {
       .pipe(
         map(data => data.filter(item => item.id === id))
       );*/
-      return this.httpClient.get<any[]>('assets/films.json').pipe(
+      return this.httpClient.get<any[]>('assets/film.json').pipe(
         map(cinemas => cinemas.find(cinema => cinema.id === id))
       );
      /* .pipe(
@@ -61,7 +64,7 @@ export class TheatreService {
   }*/
 
   getSeatsByCinemaAndTime(cinemaId: number, time: string): Observable<string[]> {
-    return this.httpClient.get<any[]>('assets/films.json').pipe(
+    return this.httpClient.get<any[]>('assets/film.json').pipe(
       map(cinemas => {
         const cinema = cinemas.find(c => c.id === cinemaId);
         if (cinema) {
@@ -75,7 +78,7 @@ export class TheatreService {
   }
   
   getSeatsByFilmDetails(cinemaId: number, filmName: string, date: string, time: string): Observable<any> {
-    return this.httpClient.get<any[]>('assets/films.json').pipe(
+    return this.httpClient.get<any[]>('assets/film.json').pipe(
       map(data => {
         const cinema = data.find((c: any) => c.id === cinemaId); // Find the cinema by id
           if (cinema) {
@@ -90,14 +93,22 @@ export class TheatreService {
     );
   }
 
- 
-
-
   updateCinemaData(cinemaData: any): Observable<any> {
-    return this.httpClient.put<any>('assets/films.json', cinemaData);
+    console.log(JSON.stringify(cinemaData,null,2));
+    this.theatreData = JSON.parse(decodeURIComponent(JSON.stringify(cinemaData,null,2)));
+    //alert(this.theatreData+" sseats : ");
+    return this.httpClient.put<any>(this.apiNodeUrl,  this.theatreData);
   }
 
 
+  login(username: string, password: string): Observable<any> {
+    return this.httpClient.post<any>(this.apilink+'login', { username, password }).pipe(
+      catchError(err => {
+        throw new Error('Login failed: ' + err.message);
+      })
+    );
+  }
+  
   getTheatre = (
     url: string, params: PaginationParams
   ): Observable<theatreData> => {

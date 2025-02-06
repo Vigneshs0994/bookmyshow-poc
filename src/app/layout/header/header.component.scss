@@ -26,19 +26,24 @@
 
 
 .login-btn {
-    position: absolute;
-      background-color: #ff0606;
+  position: absolute;
+     background-color: #f60000; /* Green background */
     color: white;
     padding: 10px 20px;
     border-radius: 9px;
     cursor: pointer;
     font-size: 16px;
+    right: 100px;
  }
 
+ 
 .login-btn:hover {
-    background-color: #000000;
+    background-color: #f60000;
+    color: white; /* Text color */
+
 }
  
+
   /* Style the search box container */
 .search-box {
     display: flex;
@@ -97,3 +102,14 @@
 }
 
  
+/* CSS to position the label at the top-right corner */
+.top-right-corner {
+  position: absolute; /* Fixes the div relative to the viewport */
+   right: 265px; /* Position 10px from the right of the screen */
+  background-color: rgba(190, 186, 186, 0.5); /* Optional: add background color for contrast */
+  color: rgb(15, 10, 10); /* Text color */
+  padding: 5px 10px; /* Optional: add some padding to the label */
+  border-radius: 7px; /* Optional: rounded corners */
+  font-size: 16px; /* Optional: set font size */
+ width: 200px;
+}

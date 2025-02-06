@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { films } from '../constants';
+import { AuthService } from '../services/auth.service';
+import { TrendingComponent } from "./trending/trending.component";
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -20,10 +22,10 @@ export class HomeComponent implements OnInit {
     { img: 'assets/images/skyforce.png', alt: 'Third Slide' }
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private authService: AuthService) {}
 
   ngOnInit(): void {
-  }
+   }
 
   isModalOpen: boolean = false; // Modal visibility control
 

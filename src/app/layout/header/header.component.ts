@@ -1,28 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../state/app.state';
+import { selectUsername } from '../../state/useraccount/useraccount.selector';
+import { MatButtonModule } from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterModule],
+  imports: [RouterModule,CommonModule,MatButtonModule,MatIconModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   standalone: true,
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit  {
   currentDateTime: string | undefined;
   isDropdownOpen = false;
   selectedCity = 'Choose Location';
-  toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
+  currentUser: String | null | undefined;
+ showUsername: boolean = false; // Modal visibility control
+
+ userAccountName$: Observable<string>;
+ 
+ 
+  constructor(private store: Store<AppState>,private router: Router,private authService:AuthService) {
+    this.userAccountName$ = this.store.select(selectUsername);
+
   }
 
-  selectCity(city: string) {
-    this.selectedCity = city;
-    this.isDropdownOpen = false; // Close the dropdown after selection
-  }
-  constructor(private router: Router) {}
 
   ngOnInit(): void {
+  
+    // alert("back login: "+this.currentUser);
+    this.currentUser = this.authService.getCurrentUser();
+    if(this.currentUser == null){
+      this.currentUser = '';
+      this.showUsername = false;
+    }
+    else{
+      this.showUsername = true;
+      this.currentUser = 'Account :'+this.currentUser;
+    }
  // Get the current date and time in UTC
     const date = new Date();
 
@@ -42,9 +63,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-
+  onlogout(){
+    this.authService.logout();
+  }
   redirectToLogin() {
-     // Navigate to the login route when the div is clicked
+      // Navigate to the login route when the div is clicked
     this.router.navigate(['/login']); // Redirect to login page
   }
 

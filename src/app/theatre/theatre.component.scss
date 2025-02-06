@@ -34,11 +34,18 @@
     font-weight: bold;
     font-size: 18px;
     color: #333;
-    flex-grow: 0.3;
+    flex-grow: 0.4;
+  }
+
+  .theatrename{
+    font-size: 25px;
+
   }
 
   .green {
     color: #6cc361  ;
+    align-items: left;
+    align-content: left;
   }
 
   .orange {

@@ -6,7 +6,7 @@
     <!-- Search Box with Icon -->
 <div class="search-box">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search movies..." aria-label="Search movies" aria-describedby="basic-addon1">
+      <input type="text" matInput class="form-control" placeholder="Search movies..." aria-label="Search movies" aria-describedby="basic-addon1">
       <div class="input-group-append">
         <span class="input-group-text" id="basic-addon1">
           <i class="fa fa-search"></i> 
@@ -14,9 +14,11 @@
       </div>
     </div>
   </div>
-  
-  
-  <div class="dropdown">
+   
+  <div  class="top-right-corner" (click)="onlogout()">
+    <label>{{userAccountName$ | async}}</label>
+  </div>
+ <!-- <div class="dropdown">
     <button (click)="toggleDropdown()" class="dropdown-toggle" type="button">
       {{ selectedCity }}
       <span class="caret"></span>
@@ -28,10 +30,12 @@
       <li><a href="#" (click)="selectCity('Kolkata')">Kolkata</a></li>
       <li><a href="#" (click)="selectCity('Delhi')">Delhi</a></li>
     </ul>
-  </div>
+  </div>-->
   
   
-    <div class="login-btn" (click)="redirectToLogin()">Sign in</div>
-    
-  </header>
+  <button  class="login-btn" mat-raised-button (click)="redirectToLogin()">        <mat-icon>person</mat-icon>
+    Sign in</button>
+
+     
+   </header>
   

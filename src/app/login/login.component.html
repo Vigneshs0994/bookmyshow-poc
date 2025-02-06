@@ -1,47 +1,88 @@
-<!-- login.component.html -->
- <br/>
+<!--  
 <div class="login-container">
-    <h2>Login</h2>
-    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          ngModel
-          required
-          #username="ngModel"
-          class="form-control"
-        />
-        <div *ngIf="username.invalid && username.touched" class="error">
+  <h2>Login</h2>
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        [(ngModel)]="username" name="username"
+        required
+         class="form-control"
+      />
+     
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="password" name="password" 
+        required
+         class="form-control"
+      />
+    
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">
+      Login
+    </button>
+
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  </form>
+
+  <p>
+    Don't have an account? <a routerLink="/register">Register</a>
+
+  </p>
+
+  <p> {{ userAccountName$ | async }}</p>
+</div>
+-->
+ 
+
+
+
+
+<div class="login-container">
+
+  <mat-card class="login-card">
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <h2><mat-label>Login</mat-label></h2>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" placeholder="Enter your Username" />
+        <mat-error *ngIf="username?.hasError('required') && username?.touched">
           Username is required.
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          ngModel
-          required
-          #password="ngModel"
-          class="form-control"
-        />
-        <div *ngIf="password.invalid && password.touched" class="error">
+        </mat-error>
+        <mat-error *ngIf="username?.hasError('username') && username?.touched">
+          Please enter a valid Username.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" placeholder="Enter your password" />
+        <mat-error *ngIf="password?.hasError('required') && password?.touched">
           Password is required.
-        </div>
-      </div>
-  
-      <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">
+        </mat-error>
+        <mat-error *ngIf="password?.hasError('minlength') && password?.touched">
+          Password must be at least 3 characters long.
+        </mat-error>
+       
+      </mat-form-field>
+      <button mat-raised-button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">
         Login
       </button>
-    </form>
-  
-    <p>
-      Don't have an account? <a routerLink="/register">Register</a>
-    </p>
-  </div>
-  
+     </form>
+     <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  </mat-card>
+  <p> {{ userAccountName$ | async }}</p>
+ 
+</div>
+ 

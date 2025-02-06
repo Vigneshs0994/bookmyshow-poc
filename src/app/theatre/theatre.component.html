@@ -1,8 +1,6 @@
 <br/><br/>
     <div class="movie-details">
-
         <h3>{{ filmname }}</h3>
-
     </div>
 <hr>
  <br/>
@@ -63,7 +61,13 @@
 
 <div class="theatre-list">
     <div *ngFor="let theatre of theatresList" class="theatre-name1">
-      <div class="name">{{ theatre.name }} <p class="green">M-Ticket</p> <p class="orange"> Food & Beverage </p></div>
+      <div class="name"><p class="theatrename">{{ theatre.name }} </p>
+        <div style="display: flex;  gap: 20px;">
+          <div class="green">M-Ticket</div>
+          <div class="orange">Food & Beverage</div>
+        </div>
+      </div>
+      
       <div *ngFor="let filmtime of theatre.showtimes">
         <button class="time1" (click)="getFilmInfo(filmtime,theatre.id)">{{ filmtime.time }}</button>
       </div>

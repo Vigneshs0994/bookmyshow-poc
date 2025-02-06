@@ -7,6 +7,7 @@
       <!-- Movie and Showtime -->
       <div class="movie-info">
         <h2>Movie: <span>{{ film }}</span></h2>
+        <p><strong>Date : </strong> <span>{{ filmdate }}</span></p>
         <p><strong>Showtime : </strong> <span>{{ showtime }}</span></p>
       </div>
   
@@ -20,7 +21,7 @@
   
       <!-- Price Summary -->
       <div class="price-summary">
-        <p><strong>Price per Seat:</strong> ₹{{ totalSeats }} x 190</p>
+        <p><strong>Price per Seat:</strong>{{ totalSeats }} x  ₹190</p>
         <p><strong>Total Price:</strong> ₹{{ totalprice }}</p>
       </div>
   
@@ -43,6 +44,8 @@
         <div class="modal-content">
           <h2>Booking Successful!</h2>
           <p><strong>Movie:</strong> {{ film }}</p>
+          <p><strong>Date:</strong> {{ filmdate }}</p>
+
           <p><strong>Showtime:</strong> {{ showtime }}</p>
           <p><strong>Selected Seats:</strong></p>
           <ul>

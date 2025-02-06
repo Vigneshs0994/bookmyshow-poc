@@ -17,13 +17,13 @@ export class BookingComponent {
   filmdate: any;
   totalSeats: any;
   totalprice: any;
-  selectedSeats: string[] = [];
-  showModal: boolean = false;
+  selectedSeats: any;
+   showModal: boolean = false;
   customerName: string = ''; // Initially empty
   customerMobile: string = ''; // Initially empty
  
   constructor(private route: ActivatedRoute,private router: Router){
-this.fetchData();
+    this.fetchData();
   }
 
   fetchData() {
@@ -33,15 +33,18 @@ this.fetchData();
       this.showtime = params['time'];
       this.filmdate = params['date'];
       this.totalSeats = params['seats'];
-
       this.totalprice = params['totalprice'];
-      this.selectedSeats = params['selectedSeat'];
- 
+      this.selectedSeats = params['selectedSeat'];  
+      this.selectedSeats =  this.selectedSeats ? (Array.isArray(this.selectedSeats) ? this.selectedSeats : [this.selectedSeats]) : [];
 
-      alert(" this.film "+ this.film+" - "+this.theatrename+" - "+this.showtime+" - "+this.filmdate+" - "+this.totalSeats)
+ 
+      //   alert(" this.film "+ this.film+" - "+this.theatrename+" - "+this.showtime+" - "+this.filmdate+" - "+this.totalSeats)
      });
   }
 
+   
+
+  
   confirmBooking(): void {
     this.showModal = true;
   }
@@ -49,6 +52,7 @@ this.fetchData();
   // Close modal
   closeModal(): void {
     this.showModal = false;
+    this.router.navigate(['/']);
   }
   cancelBooking(): void {
     this.router.navigate(['/']); // Navigate to the home page (assuming it's set to '/')
