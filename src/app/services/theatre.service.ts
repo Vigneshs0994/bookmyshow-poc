@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Options, PaginationParams, theatreData } from '../../type';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
@@ -28,7 +28,12 @@ export class TheatreService {
   }
 
   getFilms(): Observable<any> {
-    return this.httpClient.get<any>('assets/film.json');  // Make sure the path is correct
+    return this.httpClient.get<any>('assets/film.json').pipe(
+    catchError((error) => {
+       console.error('Error fetching films:', error);
+       return throwError(() => new Error('An error occurred while fetching films. Please try again later.'));
+    })
+  ); 
   }
  
   getTheatrename(id: number): Observable<any> {
@@ -116,5 +121,20 @@ export class TheatreService {
       responseType: 'json',
     });
   };
+
+
+  setDefaultSelectedDate(): string {
+    const today = new Date();
+   return this.formatDate(today); 
+  }
+
+  formatDate(date: Date): string {
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short',
+    };
+    return date.toLocaleDateString('en-US', options).toUpperCase();
+  }
 
 }

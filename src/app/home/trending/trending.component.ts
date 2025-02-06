@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-trending',
@@ -16,4 +16,13 @@ export class TrendingComponent {
     'Sonic the Hedgehog 3',
     'FateH'
   ];
+
+
+   // Declare a signal to store the selected movie
+   selectedMovie = signal<string | null>(null);
+
+   // Method to set the selected movie
+   selectMovie(movie: string): void {
+     this.selectedMovie.set(movie); // Update the signal with the selected movie
+   }
 }

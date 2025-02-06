@@ -1,23 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TheatreService } from '../services/theatre.service';
 import { theatreData } from '../../type';
- 
+import { catchError, of } from 'rxjs';
+
 interface Seat {
   number: number;
   selected: boolean;
 }
 
-
 @Component({
   selector: 'app-theatre',
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './theatre.component.html',
-  styleUrl: './theatre.component.scss'
+  styleUrl: './theatre.component.scss',
 })
-export class TheatreComponent implements OnInit{
-
+export class TheatreComponent implements OnInit {
   theatre: theatreData | undefined;
   theatresList: any[] = [];
   days: string[] = []; // Array to store the formatted dates
@@ -30,61 +29,81 @@ export class TheatreComponent implements OnInit{
   seatNumber: number | null = null; // Initially, no number is selected
   time: any;
   theatreid!: number;
+  errorMessage: string = '';
 
-  constructor(private route: ActivatedRoute, private theatreService:TheatreService, private router: Router) {
+  private theatreService = inject(TheatreService);
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
+  ngOnInit(): void {
     this.fetchData();
     this.fetchTheatreList();
-    this.setDefaultSelectedDate(); 
-  }
-  ngOnInit(): void {
+    this.filmDate = this.theatreService.setDefaultSelectedDate();
+
     this.generateNextDays();
   }
 
-  fetchTheatreList(){
+  fetchTheatreList() {
+    this.theatreService
+      .getFilms()
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching films:', error);
+          this.errorMessage = error.message;
+          return of([]);
+        })
+      )
+      .subscribe((response) => {
+        this.theatresList = response;
+      });
 
-  this.theatreService.getFilms().subscribe(response => {
-    this.theatresList = response;
-    });
+    /*this.theatreService.getFilms().subscribe((response) => {
+      this.theatresList = response;
+    });*/
+  }
 
-}
-
-getFilmInfo(time: any,id: any): void {
-     this.isModalOpen = true;  
-     this.time = time.time; 
-     this.seatNumber = 1;
-     this.theatreid = id;
-   }
+  getFilmInfo(time: any, id: any): void {
+    this.isModalOpen = true;
+    this.time = time.time;
+    this.seatNumber = 1;
+    this.theatreid = id;
+  }
 
   getFilmDate(date: string): void {
-    this.filmDate = date; 
+    this.filmDate = date;
   }
- 
+
   openModal() {
     this.isModalOpen = true;
-
   }
 
   // Function to close the modal
   closeModal() {
     this.isModalOpen = false;
   }
-  
-   // Function to select a number
-   selectNumber(num: number): void {
+
+  // Function to select a number
+  selectNumber(num: number): void {
     this.seatNumber = num; // Set the selected number
   }
 
   // Function to print the selected number
   printSelectedNumber(): void {
     if (this.seatNumber !== null && this.filmDate !== undefined) {
-    //  alert(`You selected:${this.filmname} ${this.theatreid} DAte:${this.filmDate} -- time: ${this.time}--Seat num: ${this.seatNumber}`);
-      this.router.navigate(['/seating'],{queryParams:{ theatreid: this.theatreid,filmname: this.filmname,filmdate: this.filmDate,filmtime:this.time,seat:this.seatNumber }});
-
+       this.router.navigate(['/seating'], {
+        queryParams: {
+          theatreid: this.theatreid,
+          filmname: this.filmname,
+          filmdate: this.filmDate,
+          filmtime: this.time,
+          seat: this.seatNumber,
+        },
+      });
     } else {
       alert('Please select a Date/seat number!');
     }
   }
-  
+
   initializeSeats(): void {
     for (let i = 1; i <= 10; i++) {
       this.seats.push({ number: i, selected: false });
@@ -96,35 +115,42 @@ getFilmInfo(time: any,id: any): void {
   }
 
   fetchData(): void {
-    this.route.queryParams.subscribe(params => {
-    const film = params['film'];
-    if (film) {
-      this.filmData = JSON.parse(decodeURIComponent(film));
-       this.filmname =  this.filmData.name;
-     }
+    this.route.queryParams.subscribe((params) => {
+      const film = params['film'];
+      if (film) {
+        this.filmData = JSON.parse(decodeURIComponent(film));
+        this.filmname = this.filmData.name;
+      }
     });
   }
- 
 
-   // Function to generate next 5 days
-   generateNextDays() {
-      const currentDate = new Date(); // Today's date
-      for (let i = 0; i < 5; i++) {
-        const nextDay = new Date(currentDate);
-        nextDay.setDate(currentDate.getDate() + i); // Increment the date by i days
-        const options: Intl.DateTimeFormatOptions = { weekday: 'short', day: 'numeric', month: 'short' };
-        this.days.push(nextDay.toLocaleDateString('en-US', options).toUpperCase()); // Format and push to array
-      }    
+  // Function to generate next 5 days
+  generateNextDays() {
+    const currentDate = new Date(); // Today's date
+    for (let i = 0; i < 2; i++) {
+      const nextDay = new Date(currentDate);
+      nextDay.setDate(currentDate.getDate() + i); // Increment the date by i days
+      const options: Intl.DateTimeFormatOptions = {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'short',
+      };
+      this.days.push(
+        nextDay.toLocaleDateString('en-US', options).toUpperCase()
+      ); // Format and push to array
+    }
   }
 
-  formatDate(date: Date): string {
-    const options: Intl.DateTimeFormatOptions = { weekday: 'short', day: 'numeric', month: 'short' };
+  /*formatDate(date: Date): string {
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short',
+    };
     return date.toLocaleDateString('en-US', options).toUpperCase();
   }
   setDefaultSelectedDate() {
     const today = new Date();
     this.filmDate = this.formatDate(today); // Set today's date as default selected
-  }
-
-
+  }*/
 }

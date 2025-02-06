@@ -15,7 +15,7 @@ export interface UserAccountState {
    */
     export const userReducer = createReducer(
         initialUserAccountState,
-        on(getUsername, (state, { username }) => ({
+        on(getUsername, (state:UserAccountState, { username }) => ({
           ...state,
           username
         }))

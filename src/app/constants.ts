@@ -1,4 +1,6 @@
-export const films = [
+import { signal } from "@angular/core";
+
+export const films = signal([
     {
       name: 'Game Changer',
       languages: 'Telugu, Tamil, Hindi',
@@ -64,7 +66,7 @@ export const films = [
       storyline: 'Fateh, a mystery man who believes he has left his past behind him, devotes himself to starting a tranquil new life in Punjab. However, when a local girl falls victim to the cyber mafia and goes missing in Delhi, he is unable to walk away. With his powerful skills, Fateh emerges from self-imposed retirement as an avenging angel, determined to bring down the entire cyber mafia syndicate.'
     }
 
-  ];
+  ]);
 
 
   export const theatres = [

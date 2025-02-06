@@ -1,4 +1,8 @@
-<br/><br/>
+<br/>
+<div *ngIf="errorMessage" class="error-message">
+  <!-- Show the error message if there is one -->
+  {{ errorMessage }}
+</div><br/>
     <div class="movie-details">
         <h3>{{ filmname }}</h3>
     </div>

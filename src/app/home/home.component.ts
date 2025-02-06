@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { films } from '../constants';
 import { AuthService } from '../services/auth.service';
@@ -13,22 +13,20 @@ import { TrendingComponent } from "./trending/trending.component";
 })
 export class HomeComponent implements OnInit {
 
-  filmname!: string;
-  languages!: string;
-  films = films;  
-  slides = [
+  films = films();
+  slides = signal([
     { img: 'assets/images/mufasa.png', alt: 'First Slide' },
     { img: 'assets/images/emergency.png', alt: 'Second Slide' },
     { img: 'assets/images/skyforce.png', alt: 'Third Slide' }
-  ];
-
+  ]);
+  
   constructor(private router: Router,private authService: AuthService) {}
 
   ngOnInit(): void {
    }
 
-  isModalOpen: boolean = false; // Modal visibility control
-
+  isModalOpen: boolean = false; 
+  
   openModal() {
     this.isModalOpen = true;
   }
@@ -43,8 +41,7 @@ export class HomeComponent implements OnInit {
     const jsonString = encodeURIComponent(JSON.stringify(film));
     this.router.navigate(['/movie'],{queryParams:{ film: jsonString } }
     ); 
-    //this.filmname = film.name;
-   // this.languages = film.languages;
+    
    }
   
 }

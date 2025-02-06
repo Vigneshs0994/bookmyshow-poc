@@ -1,9 +1,12 @@
 <div class="container">
     <h1>Trending Movies</h1>
     <div class="badge-container">
-      <span *ngFor="let movie of trendingMovies" class="badge">
+      <span *ngFor="let movie of trendingMovies" class="badge" (click)="selectMovie(movie)">
         {{ movie }}
       </span>
     </div>
   </div>
-  
+  <br/>
+  <div class="selected-movie" *ngIf="selectedMovie()">
+    <h2>Selected Movie: {{ selectedMovie() }}</h2>
+  </div>

@@ -23,6 +23,6 @@ export class ApiService {
   }
 
   getData(): Observable<any> {
-    return this.httpClient.get<any>('assets/films.json');  // Replace with your JSON file's path
+    return this.httpClient.get<any>('assets/film.json');  // Replace with your JSON file's path
   }
 }
